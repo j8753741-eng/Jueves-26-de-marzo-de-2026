@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carta para Valeria</title>
+
+  <style>
+    :root{
+      --vino:#5a0f2a;
+      --dorado:#d9b46f;
+      --rosa:#ffb6c1;
+      --perla:#fff7f9;
+      --tinta:#2b1c1f;
+      --morado:#7a2cff;
+      --sombra: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family: "Georgia", serif;
+      background: radial-gradient(circle at top, #2a0c14 0%, #0c0507 70%);
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px 15px;
+      color:var(--tinta);
+      overflow-x:hidden;
+    }
+
+    /* Fondo romántico con estrellas */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.35) 0 1px, transparent 2px),
+        radial-gradient(circle at 80% 10%, rgba(255,255,255,.25) 0 1px, transparent 2px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.20) 0 1px, transparent 2px),
+        radial-gradient(circle at 65% 55%, rgba(255,255,255,.25) 0 1px, transparent 2px),
+        radial-gradient(circle at 10% 90%, rgba(255,255,255,.18) 0 1px, transparent 2px);
+      opacity:.6;
+      z-index:-2;
+      pointer-events:none;
+    }
+
+    /* Neblina suave */
+    body::after{
+      content:"";
+      position:fixed;
+      inset:-100px;
+      background: radial-gradient(circle, rgba(255,182,193,.12), transparent 60%);
+      filter: blur(40px);
+      z-index:-1;
+      animation: neblina 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes neblina{
+      0%{transform:translateY(-10px);}
+      100%{transform:translateY(20px);}
+    }
+
+    .envoltura{
+      width:min(950px, 100%);
+      position:relative;
+      padding:18px;
+      border-radius:28px;
+      background: linear-gradient(135deg, rgba(217,180,111,.25), rgba(255,182,193,.18));
+      box-shadow: var(--sombra);
+    }
+
+    /* Marco elegante */
+    .marco{
+      background: linear-gradient(180deg, rgba(255,247,249,.96), rgba(255,247,249,.88));
+      border-radius:22px;
+      padding:50px 45px;
+      position:relative;
+      overflow:hidden;
+      border: 1px solid rgba(217,180,111,.5);
+    }
+
+    /* Brillo diagonal */
+    .marco::before{
+      content:"";
+      position:absolute;
+      inset:-120px;
+      background: linear-gradient(135deg, transparent 35%, rgba(255,255,255,.35), transparent 65%);
+      transform: rotate(8deg);
+      animation: brillo 7s ease-in-out infinite;
+      opacity:.7;
+    }
+
+    @keyframes brillo{
+      0%{transform:translateX(-150px) rotate(8deg);}
+      100%{transform:translateX(150px) rotate(8deg);}
+    }
+
+    /* Rosas decorativas */
+    .rosas{
+      position:absolute;
+      top:-10px;
+      right:-10px;
+      width:200px;
+      height:200px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,182,193,.8), transparent 65%);
+      filter: blur(1px);
+      opacity:.9;
+      transform: rotate(20deg);
+      z-index:0;
+    }
+
+    .rosas2{
+      position:absolute;
+      bottom:-40px;
+      left:-40px;
+      width:240px;
+      height:240px;
+      background: radial-gradient(circle at 50% 50%, rgba(217,180,111,.55), transparent 70%);
+      opacity:.8;
+      transform: rotate(-18deg);
+      z-index:0;
+    }
+
+    header{
+      position:relative;
+      z-index:2;
+      text-align:center;
+      margin-bottom:30px;
+    }
+
+    header h1{
+      font-size:2.4rem;
+      letter-spacing:2px;
+      color:var(--vino);
+      text-transform:uppercase;
+      margin-bottom:10px;
+    }
+
+    header .sub{
+      font-size:1.05rem;
+      color:#6b3a46;
+      font-style:italic;
+      line-height:1.4;
+    }
+
+    .sello{
+      margin:25px auto 0;
+      width:95px;
+      height:95px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,182,193,.9), rgba(90,15,42,.95));
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+      font-weight:bold;
+      font-size:1.2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,.3);
+      border: 2px solid rgba(217,180,111,.8);
+      position:relative;
+    }
+
+    .sello::after{
+      content:"❤";
+      position:absolute;
+      bottom:-18px;
+      font-size:1.6rem;
+      color:rgba(217,180,111,.95);
+      text-shadow: 0 4px 12px rgba(0,0,0,.35);
+    }
+
+    .contenido{
+      position:relative;
+      z-index:2;
+      font-size:1.12rem;
+      line-height:1.9;
+      color:var(--tinta);
+      text-align:justify;
+    }
+
+    .contenido p{
+      margin-bottom:18px;
+    }
+
+    .contenido strong{
+      color:var(--vino);
+      letter-spacing:.4px;
+    }
+
+    /* Firma */
+    .firma{
+      margin-top:40px;
+      padding-top:22px;
+      border-top: 1px solid rgba(90,15,42,.25);
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      position:relative;
+      z-index:2;
+    }
+
+    .firma .despedida{
+      font-size:1.15rem;
+      font-style:italic;
+      color:#5c2a36;
+    }
+
+    .firma .nombre{
+      font-size:1.25rem;
+      font-weight:bold;
+      color:var(--vino);
+      letter-spacing:1px;
+    }
+
+    .firma .extra{
+      font-size:.95rem;
+      opacity:.85;
+      color:#3a1b23;
+    }
+
+    /* Frase final en morado */
+    .frase-final{
+      margin-top:40px;
+      text-align:center;
+      font-size:1.2rem;
+      font-style:italic;
+      color:var(--morado);
+      font-weight:bold;
+      position:relative;
+      z-index:2;
+    }
+
+    .frase-final span{
+      display:inline-block;
+      padding:10px 18px;
+      border-radius:18px;
+      background: rgba(122,44,255,.10);
+      border: 1px solid rgba(122,44,255,.25);
+      box-shadow: 0 10px 30px rgba(0,0,0,.10);
+    }
+
+    /* Corazones flotantes */
+    .corazon{
+      position:absolute;
+      font-size:18px;
+      opacity:.35;
+      animation: flotar 7s ease-in-out infinite;
+      z-index:1;
+    }
+
+    @keyframes flotar{
+      0%{transform:translateY(0px) scale(1); opacity:.2;}
+      50%{transform:translateY(-20px) scale(1.15); opacity:.55;}
+      100%{transform:translateY(0px) scale(1); opacity:.25;}
+    }
+
+    .c1{top:70px; left:40px; animation-delay:0s;}
+    .c2{top:160px; right:60px; animation-delay:1.3s;}
+    .c3{bottom:120px; left:90px; animation-delay:2.1s;}
+    .c4{bottom:70px; right:120px; animation-delay:3.2s;}
+    .c5{top:280px; left:50%; animation-delay:4.1s;}
+
+    @media(max-width:700px){
+      .marco{
+        padding:35px 22px;
+      }
+      header h1{
+        font-size:1.85rem;
+      }
+      .contenido{
+        font-size:1.05rem;
+        line-height:1.85;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="envoltura">
+
+    <div class="marco">
+
+      <div class="rosas"></div>
+      <div class="rosas2"></div>
+
+      <div class="corazon c1">❤</div>
+      <div class="corazon c2">❤</div>
+      <div class="corazon c3">❤</div>
+      <div class="corazon c4">❤</div>
+      <div class="corazon c5">❤</div>
+
+      <header>
+        <h1>CARTA DE AMOR</h1>
+        <div class="sub">
+          Jueves por la noche, 26 de marzo de 2026 <br>
+          En el silencio del mundo… donde solo tú tienes mi corazón.
+        </div>
+        <div class="sello">TE AMO</div>
+      </header>
+
+      <section class="contenido">
+
+        <p>Mi amor,</p>
+
+        <p>
+          Esta noche de jueves, 26 de marzo de 2026, mientras el mundo se apaga poquito a poco y el cielo se queda quieto como si también estuviera cansado del día… yo me quedé pensando en ti. Y no fue un pensamiento cualquiera, no fue un recuerdo suave… fue una necesidad. Una de esas que se sienten en el pecho, como si el corazón se pusiera sentimental y caprichoso, como si dijera: “yo no quiero dormir si ella no está cerca”.
+        </p>
+
+        <p>
+          Porque tú no eres solo alguien que me gusta… tú eres esa parte de mi vida que le da sentido a mis días, esa calma que aparece cuando todo está raro, esa emoción que me enciende incluso cuando estoy agotado. Y hoy… hoy te extraño de una forma diferente.
+        </p>
+
+        <p><strong>HOY TE EXTRAÑO CON ANTICIPACIÓN.</strong></p>
+
+        <p>
+          Porque esta semana santa está llegando, y con ella vienen las vacaciones… y aunque se supone que las vacaciones son para descansar, para relajarse, para sentirse libre… yo no puedo evitar sentir que, si no te veo, se me va a hacer eterna. Se me va a hacer larga. Se me va a hacer pesada.
+        </p>
+
+        <p>
+          Y lo peor es que no sabemos todavía si el sábado nos toca ir a la otra sede… y solo pensar en esa posibilidad me deja con una sensación rara, como si el destino se estuviera haciendo el difícil conmigo, como si la vida estuviera intentando ponerme una prueba… como si el universo quisiera ver cuánto puedo aguantar sin ti.
+        </p>
+
+        <p><strong>PERO AMOR… YO NO QUIERO AGUANTAR.</strong></p>
+
+        <p><strong>YO NO QUIERO ACOSTUMBRARME A ESTAR SIN TI.</strong></p>
+
+        <p>
+          Yo quiero verte. Quiero mirarte. Quiero escucharte hablar aunque sea de cualquier cosa. Quiero sentir esa felicidad tonta que me da cuando sé que estás cerca. Quiero que el día sea menos día y más bonito solo porque tú existes en él.
+        </p>
+
+        <p>
+          Y es que tú no entiendes lo que causas en mí… o tal vez sí lo entiendes, pero no sabes hasta qué punto.
+        </p>
+
+        <p>
+          Tú tienes algo que me atrapa… algo que no se explica con palabras fáciles. Es como si tu forma de ser hubiera sido diseñada exactamente para romper todas mis defensas. Como si tú hubieras llegado a mi vida para dejarme sin excusas, para volverme más humano, más sensible… más enamorado.
+        </p>
+
+        <p>
+          Porque cuando pienso en ti, mi amor, no pienso solo en lo linda que eres… pienso en lo increíble que es tenerte.
+        </p>
+
+        <p>
+          Pienso en tu voz, en tu forma de responder, en tu presencia. Pienso en tus gestos, en tu carita, en la manera en la que puedes cambiarme el ánimo sin siquiera intentarlo. Pienso en lo especial que es sentir que tengo a alguien como tú.
+        </p>
+
+        <p>
+          Y esta noche… esta noche me duele un poquito saber que tal vez esta semana no vamos a poder vernos como yo quisiera.
+        </p>
+
+        <p>
+          Porque yo te juro que a mí me hace falta verte… como si fuera una necesidad básica. Como si mi semana estuviera incompleta si tú no apareces en ella. Como si mi vida, sin ti, perdiera color.
+        </p>
+
+        <p>Mi amor…</p>
+
+        <p>
+          Tú eres la parte más bonita de mis días. Eres lo que me da ganas de esforzarme. Eres lo que me inspira a ser mejor. Eres lo que me hace sonreír incluso cuando no estoy bien.
+        </p>
+
+        <p>
+          Y es tan extraño… porque no se trata solo de extrañarte como se extraña a alguien… se trata de extrañarte como se extraña un hogar.
+        </p>
+
+        <p><strong>PORQUE CONTIGO ME SIENTO EN CASA.</strong></p>
+
+        <p>
+          Y esta semana santa… aunque sea un tiempo de descanso… yo siento que voy a estar contando los días como si fuera una eternidad, esperando el momento en el que pueda verte otra vez. Esperando el momento en el que vuelva a tenerte cerca y pueda mirarte con calma, sin prisa… como si el tiempo no existiera.
+        </p>
+
+        <p>
+          Porque cuando tú estás conmigo, mi amor… el tiempo se vuelve suave.
+        </p>
+
+        <p>
+          El mundo se vuelve más lento. Más bonito. Más sencillo.
+        </p>
+
+        <p>
+          Y si tú supieras cuánto me gustaría que este jueves por la noche terminara con nosotros juntos, aunque fuera un ratito, aunque fuera solo para mirarnos y sentir esa conexión que tenemos… esa que se siente tan real que hasta da miedo.
+        </p>
+
+        <p>
+          Porque lo que yo siento por ti no es pequeño. No es pasajero. No es un “me gustas”.
+        </p>
+
+        <p><strong>LO QUE YO SIENTO POR TI ES UN AMOR QUE SE METE EN LA PIEL.</strong></p>
+
+        <p><strong>ES UN AMOR QUE SE QUEDA.</strong></p>
+
+        <p><strong>ES UN AMOR QUE NO SABE FINGIR INDIFERENCIA.</strong></p>
+
+        <p>
+          Y por eso me pongo así… por eso me da ese sentimiento en el pecho cuando pienso que tal vez esta semana no vamos a poder vernos.
+        </p>
+
+        <p>
+          Porque yo no quiero que pasen los días sin ti. No quiero que la distancia se interponga. No quiero que el destino nos quite momentos.
+        </p>
+
+        <p><strong>YO QUIERO VIVIRLOS CONTIGO.</strong></p>
+
+        <p>
+          Quiero que la semana santa sea una semana bonita, sí… pero bonita porque tú estás ahí. Porque tú me escribes. Porque tú me hablas. Porque tú me haces sentir que estoy acompañado aunque no estés físicamente conmigo.
+        </p>
+
+        <p>
+          Pero aun así… aun así no puedo evitar imaginarte.
+        </p>
+
+        <p>
+          Imaginar tu carita. Imaginar tu sonrisa. Imaginar tus ojos mirándome como si yo fuera importante para ti.
+        </p>
+
+        <p><strong>Y AMOR… LO SOY.</strong></p>
+
+        <p>
+          Porque tú me haces sentir importante. Tú me haces sentir querido. Tú me haces sentir especial.
+        </p>
+
+        <p>
+          Y eso… eso es algo que yo nunca voy a olvidar.
+        </p>
+
+        <p>
+          Yo te juro que si esta semana no podemos vernos, yo igual voy a estar pensando en ti a cada rato. Voy a estar imaginando cómo estás, qué haces, si ya comiste, si estás cansada, si estás feliz… y voy a estar deseando con todo mi corazón que el sábado no nos separen los planes, que no nos toque ir a esa otra sede, que el destino por fin se porte bonito con nosotros y nos deje tener aunque sea un momento juntos.
+        </p>
+
+        <p><strong>PORQUE YO NO QUIERO QUE PASE EL SÁBADO SIN VERTE.</strong></p>
+
+        <p><strong>YO NO QUIERO QUE PASE UNA SEMANA SIN TENERTE CERCA.</strong></p>
+
+        <p>
+          Yo necesito verte aunque sea cinco minutos… porque tú no eres cualquier persona para mí, tú eres mi amor.
+        </p>
+
+        <p>
+          Y sí… yo sé que suena intenso.
+        </p>
+
+        <p>
+          Pero es que yo contigo no sé ser frío. No sé ser indiferente. No sé fingir que no me importas.
+        </p>
+
+        <p><strong>YO CONTIGO SOLO SÉ SENTIR.</strong></p>
+
+        <p><strong>SOLO SÉ ENAMORARME MÁS.</strong></p>
+
+        <p>
+          Solo sé pensar en lo lindo que sería abrazarte fuerte, mirarte a los ojos y decirte despacio: “te extrañé tanto… no sabes cuánto”.
+        </p>
+
+        <p>
+          Porque yo sé que cuando te vuelva a ver, mi amor… cuando por fin pueda tenerte cerquita otra vez… yo voy a sentir una alegría que no me va a caber en el pecho.
+        </p>
+
+        <p>
+          Y voy a querer abrazarte como si el mundo se estuviera acabando. Como si los días sin ti me hubieran dejado vacío. Como si cada segundo lejos de ti me hubiera enseñado lo mucho que significas.
+        </p>
+
+        <p>
+          Y lo peor es que ni siquiera necesito estar lejos de ti para darme cuenta…
+        </p>
+
+        <p><strong>BASTA CON IMAGINARLO.</strong></p>
+
+        <p><strong>BASTA CON PENSAR EN UNA SEMANA SIN VERTE.</strong></p>
+
+        <p>
+          Y ya siento ese vacío.
+        </p>
+
+        <p>
+          Ya siento esas ganas.
+        </p>
+
+        <p>
+          Ya siento esa ansiedad bonita que me da porque tú me importas más de lo que debería.
+        </p>
+
+        <p>
+          Porque tú no eres una parte pequeña de mi vida…
+        </p>
+
+        <p><strong>TÚ ERES MI PARTE FAVORITA.</strong></p>
+
+        <p>
+          Mi amor… si tú supieras lo que yo daría por tenerte aquí esta noche.
+        </p>
+
+        <p>
+          Tenerte al lado. Escuchar tu respiración. Sentir tu calor. Ver tu carita tranquila.
+        </p>
+
+        <p>
+          Y quedarme mirándote como un tonto… porque yo sé que lo haría.
+        </p>
+
+        <p>
+          Porque contigo me pasa eso: me vuelvo vulnerable. Me vuelvo romántico. Me vuelvo real.
+        </p>
+
+        <p>
+          Porque tú despiertas en mí algo que no despierta nadie.
+        </p>
+
+        <p>
+          Y es que tú tienes magia, amor…
+        </p>
+
+        <p>
+          Magia de esa que no se aprende. Magia de esa que no se finge. Magia de esa que solo tienen las personas que nacieron para dejar huella en el corazón de alguien.
+        </p>
+
+        <p><strong>Y TÚ YA DEJASTE LA TUYA EN EL MÍO.</strong></p>
+
+        <p>
+          Y no es una huella pequeña…
+        </p>
+
+        <p><strong>ES UNA MARCA PROFUNDA, BONITA, ETERNA.</strong></p>
+
+        <p>
+          Por eso esta noche, jueves 26 de marzo… yo quiero que lo sepas:
+        </p>
+
+        <p>
+          Si esta semana santa no podemos vernos, yo voy a extrañarte como se extraña lo más valioso.
+        </p>
+
+        <p>
+          Voy a extrañar tu forma de hablar. Tu forma de reír. Tu forma de existir.
+        </p>
+
+        <p>
+          Voy a extrañar tus mensajes. Tu compañía. Tu presencia.
+        </p>
+
+        <p>
+          Voy a extrañar sentir que mi día tiene un motivo especial.
+        </p>
+
+        <p><strong>PORQUE TÚ ERES ESE MOTIVO.</strong></p>
+
+        <p>
+          Y aun así, aunque no podamos vernos, yo quiero que tú nunca dudes de algo:
+        </p>
+
+        <p><strong>YO VOY A ESTAR AQUÍ.</strong></p>
+
+        <p>
+          Pensando en ti. Deseándote. Cuidándote a mi manera.
+        </p>
+
+        <p>
+          Porque tú eres mi amor… y cuando uno ama así… no hay distancia que apague esto.
+        </p>
+
+        <p>
+          No hay planes. No hay sede. No hay vacaciones. No hay nada que cambie lo que siento.
+        </p>
+
+        <p><strong>PORQUE YO CONTIGO NO ESTOY JUGANDO.</strong></p>
+
+        <p><strong>YO CONTIGO ESTOY SOÑANDO.</strong></p>
+
+        <p>
+          Estoy construyendo algo en mi corazón que se siente demasiado real, demasiado fuerte, demasiado bonito como para ignorarlo.
+        </p>
+
+        <p>
+          Y por eso, mi vida…
+        </p>
+
+        <p>
+          Si llega el sábado y resulta que sí nos toca ir a la otra sede y no podemos vernos, yo solo quiero que recuerdes esto:
+        </p>
+
+        <p><strong>NO IMPORTA CUÁNTOS DÍAS PASEN.</strong></p>
+
+        <p>
+          Yo voy a seguir deseando verte. Voy a seguir queriéndote. Voy a seguir enamorado de ti.
+        </p>
+
+        <p>
+          Y cuando por fin podamos encontrarnos otra vez… yo voy a abrazarte como si todo el universo se hubiera alineado solo para darme ese momento contigo.
+        </p>
+
+        <p>
+          Y voy a mirarte como siempre…
+        </p>
+
+        <p><strong>COMO SI FUERAS LO MÁS LINDO QUE ME HA PASADO.</strong></p>
+
+        <p><strong>PORQUE LO ERES.</strong></p>
+
+        <p>Mi amor…</p>
+
+        <p>
+          Prométeme que si no nos vemos, vas a cuidarte. Vas a descansar. Vas a comer bien. Vas a estar tranquila.
+        </p>
+
+        <p>
+          Y prométeme también que, cuando sientas que me extrañas, vas a pensar en esto:
+        </p>
+
+        <p><strong>QUE YO TE EXTRAÑO MÁS.</strong></p>
+
+        <p><strong>QUE YO TE PIENSO MÁS.</strong></p>
+
+        <p><strong>QUE YO TE DESEO MÁS.</strong></p>
+
+        <p><strong>QUE YO TE AMO CON UNA INTENSIDAD QUE NO SE APAGA NI CON EL TIEMPO NI CON LA DISTANCIA.</strong></p>
+
+        <p>
+          Porque tú eres esa persona que me hace sentir vivo.
+        </p>
+
+        <p>
+          Y yo… yo no quiero perder ni un solo día de mi vida sin recordarte que eres increíble.
+        </p>
+
+        <p>
+          Que eres preciosa.
+        </p>
+
+        <p>
+          Que eres única.
+        </p>
+
+        <p><strong>QUE ERES MI NIÑA… MI AMOR… MI TODO.</strong></p>
+
+        <p>
+          Y esta noche, antes de dormir, quiero dejarte una confesión que me sale del alma:
+        </p>
+
+        <p>
+          Yo no sé qué vaya a pasar el sábado… No sé si nos toque ir a la otra sede… No sé si el destino nos deje vernos o no…
+        </p>
+
+        <p><strong>PERO SÍ SÉ ALGO CON ABSOLUTA SEGURIDAD:</strong></p>
+
+        <p><strong>YO VOY A EXTRAÑARTE TANTO QUE HASTA EL SILENCIO ME VA A HABLAR DE TI.</strong></p>
+
+        <p>
+          Y cuando llegue el momento en que por fin pueda verte… cuando te tenga cerca otra vez… cuando pueda mirarte sin pantalla de por medio…
+        </p>
+
+        <p><strong>TE LO VOY A DEMOSTRAR.</strong></p>
+
+        <p>
+          Te lo voy a decir con mis ojos. Te lo voy a decir con mi voz. Te lo voy a decir con mis abrazos.
+        </p>
+
+        <p>
+          Y si pudiera, mi amor…
+        </p>
+
+        <p><strong>TE LO DIRÍA CON EL CORAZÓN EN LA MANO.</strong></p>
+
+        <p>
+          Porque tú eres la persona que más me importa.
+        </p>
+
+        <p>
+          Y yo te quiero con una fuerza tan grande… que a veces me asusta.
+        </p>
+
+        <p>
+          Pero no me arrepiento.
+        </p>
+
+        <p><strong>PORQUE AMARTE ES LO MÁS BONITO QUE ME ESTÁ PASANDO.</strong></p>
+
+        <p>
+          Duerme tranquila, mi amor.
+        </p>
+
+        <p>
+          Y si esta semana santa se pone difícil… si la distancia intenta molestarnos… si el tiempo intenta separarnos…
+        </p>
+
+        <p><strong>RECUERDA ESTO:</strong></p>
+
+        <p><strong>TÚ YA ERES PARTE DE MÍ.</strong></p>
+
+        <p><strong>Y YO… YO SOY COMPLETAMENTE TUYO.</strong></p>
+
+        <p>
+          Te amo con todo lo que soy.
+        </p>
+
+        <p>
+          Con todo lo que siento.
+        </p>
+
+        <p>
+          Con todo lo que me falta decirte.
+        </p>
+
+        <p>
+          Buenas noches, mi vida…<br>
+          y que el destino nos deje vernos, porque yo necesito tenerte cerca.
+        </p>
+
+      </section>
+
+      <div class="firma">
+        <div class="despedida">Siempre tuyo,</div>
+        <div class="nombre">TU AMOR. 🥹❤️</div>
+        <div class="extra">JUAN KALETH MENDOZA PRIMERA</div>
+      </div>
+
+      <div class="frase-final">
+        <span>
+          “Si el mundo se apaga… yo sigo brillando por ti, <strong>VALERIA PETRO VILLAZÓN</strong>.”
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+  </html>
